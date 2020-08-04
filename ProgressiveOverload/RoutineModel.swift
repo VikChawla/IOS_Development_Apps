@@ -12,10 +12,13 @@ class RoutineModel
 {
     var realm = try! Realm()
     var currLifts = [String]()
+    var currLiftsObjects = [ExerciseModel]()
     func findPrevious(exercise: String) -> [String]?
        {
+        print("run once")
+        var currLiftsTemp = [String]()
+        var currLiftsObjectsTemp = [ExerciseModel]()
         
-        print(Realm.Configuration.defaultConfiguration.fileURL)
           let formatter = DateFormatter()
                    formatter.timeZone = .current
                    formatter.locale = .current
@@ -23,11 +26,12 @@ class RoutineModel
                  formatter.dateStyle = .full
                  formatter.timeStyle = .full
                  
-           print(exercise)
-           let results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
+           
+        let results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
         if(results.count <= 0 ) {return [""]}
-           print(results.count)
+        
            var resultsArr = Array(results)
+        
            resultsArr = resultsArr.sorted(by:
                {
                    
@@ -36,52 +40,52 @@ class RoutineModel
                   })
            
            
-           var currDateFirst = Date()
+        let currDateFirst = Date()
         
-      var currDate2 = formatter.string(from: currDateFirst)
+        let currDate2 = formatter.string(from: currDateFirst)
         var currDate = formatter.date(from: currDate2)
         currDate = removeTimeStamp(fromDate: currDate!)
-           var previousDate = Date()
-           for i in 0..<resultsArr.count - 1
-           {
-              
-               var dateOne =  formatter.date(from: resultsArr[i].date!)
-               dateOne = removeTimeStamp(fromDate: dateOne!)
-              // print(dateOne)
-               var dateTwo =  formatter.date(from: resultsArr[i + 1].date!)
-               dateTwo = removeTimeStamp(fromDate: dateTwo!)
-            if(dateOne == currDate)
-            {
-                currLifts.append(resultsArr[i].setsByReps!)
-            }
-            if(i == resultsArr.count - 1 && dateTwo == currDate)
-            {
-                currLifts.append(resultsArr[i + 1].setsByReps!)
-            }
-               if( dateOne!.compare((dateTwo!)) == .orderedDescending )
-               {
-                   
-                   print(dateTwo)
-                   print("done?")
-                   previousDate = dateTwo!
-                   break;
-               }
-           }
-           var res = [String]()
+        var res = [String]()
            for i in 0..<resultsArr.count
            {
-               var date = formatter.date(from:resultsArr[i].date!)
-               date = removeTimeStamp(fromDate: date!)
-               if date == previousDate
-               {
-                   res.append(resultsArr[i].setsByReps!)
-               }
-               
-           }
-           print(res.reversed())
-           return res.reversed()
               
-               
+                var dateOne =  formatter.date(from: resultsArr[i].date!)
+                dateOne = removeTimeStamp(fromDate: dateOne!)
+                var currDateCount = i
+            if(dateOne == currDate)
+                {
+                    currLiftsTemp.append(resultsArr[i].setsByReps!)
+                    currLiftsObjectsTemp.append(resultsArr[i])
+                }
+                
+                let dateOneCurr = dateOne
+                
+                
+                if(dateOne != currDate)
+                {
+                    var count = i
+                    while(dateOne == dateOneCurr && count + 1 < resultsArr.count)
+                    {
+                        res.append(resultsArr[count].setsByReps!)
+                        count = count + 1
+                      
+                        
+                        dateOne = formatter.date(from: resultsArr[count].date!)
+                        dateOne = removeTimeStamp(fromDate: dateOne!)
+                    }
+                    currLifts = currLiftsTemp
+                    currLiftsObjects = currLiftsObjectsTemp
+                  
+                    return res.reversed()
+                   
+                }
+           }
+            
+        currLifts = currLiftsTemp
+        currLiftsObjects = currLiftsObjectsTemp
+                      
+              
+            return ["No Previous Lifts"]
            
        }
     
@@ -97,7 +101,7 @@ class RoutineModel
     {
         if(currLifts.count == 0)
         {
-            return [""]
+            return [String]()
         }
         else{
             
@@ -106,6 +110,10 @@ class RoutineModel
         }
         
     }
+    func getCurrentLiftsObjects() -> [ExerciseModel]
+    {
+      return  currLiftsObjects.reversed()
+    }
     
     public func removeTimeStamp(fromDate: Date) -> Date {
            guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
@@ -113,4 +121,12 @@ class RoutineModel
            }
            return date
        }
+    
+    func remove(obj: ExerciseModel)
+    {
+        try! realm.write {
+            realm.delete(obj)
+           
+        }
+    }
 }

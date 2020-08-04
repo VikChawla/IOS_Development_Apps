@@ -18,6 +18,8 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     var selectedIndex = -1
     var iscollapse = false
     
+    var selectedTime = 180
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -38,6 +40,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    
     @IBAction func addButton(_ sender: Any)
     {
         let alert = UIAlertController(title: "Add Exercise", message: nil, preferredStyle: .alert)
@@ -48,12 +51,31 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
             guard let exercise = alert.textFields?.first?.text else{
                 return
             }
+            
             self.add(exercise)
             
         }
+        let actionCancle = UIAlertAction(title: "Cancle", style: .cancel)
+        alert.addAction(actionCancle)
         
         alert.addAction(action)
         present(alert, animated:true)
+    }
+    @IBAction func clickedTimer(_ sender: Any)
+    {
+        let alert = UIAlertController(title: "Choose Time", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        createTimePicker()
+        let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 160))
+        alert.view.addSubview(pickerFrame)
+        pickerFrame.dataSource = self
+        pickerFrame.delegate = self
+          alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+              
+                self.tableView.reloadData()
+                }))
+        self.present(alert,animated: true, completion: nil )
+       
     }
     
     func add(_ exercise: String)
@@ -65,11 +87,27 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.insertRows(at: [indexPath], with: .top)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       guard editingStyle == .delete else {return}
-        nameArr.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        if self.selectedIndex == indexPath.row && iscollapse == true{
+            return false
+        }
+        return true
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        
+                print(iscollapse)
+                          guard editingStyle == .delete else {return}
+                          nameArr.remove(at: indexPath.row)
+                          tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+          
+        
+      
+    }
+ 
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -87,14 +125,16 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.imageIMG.image = UIImage(named: "\(imageArr[indexPath.row])")
  */
         cell.tableView.cellForRow(at: indexPath)
-        
+        cell.profileChosenTimer = selectedTime
         cell.label.text = nameArr[indexPath.row]
         
         return cell
      }
      var prevLifts = [String]()
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+          
         tableView.deselectRow(at: indexPath, animated: true)
         if selectedIndex == indexPath.row
         {
@@ -105,7 +145,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         
         else{
             self.iscollapse = false
-        }
+            }
         }
         else{
             self.iscollapse = true
@@ -120,10 +160,23 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
                print("hit here even?")
         cell.prevLifts = cell.routineModel.findPrevious(exercise: nameArr[indexPath.row])!
         cell.setsByReps = cell.routineModel.getCurrentLifts()
+      
+        print(cell.setsByReps)
        
         //cell.
           
     
+    }
+    
+   var textFieldForTime = UITextField()
+    
+    let times = ["5:00","4:00", "3:00", "2:30", "2:00","1:30", "1:00", "0:30"]
+    
+    func createTimePicker(){
+        let timePicker = UIPickerView()
+        timePicker.delegate = self
+        textFieldForTime.inputView = timePicker
+        
     }
 }
 
@@ -144,4 +197,67 @@ extension UIViewController {
         [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: fontSize)
     ]
   }
+}
+
+
+
+
+extension RoutineViewController: UIPickerViewDelegate, UIPickerViewDataSource
+{
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        times.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        times[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedTime = calcTime(time: times[row])
+        
+    }
+    
+    func calcTime(time: String) -> Int
+    {
+        print("coming here??")
+        if time == "5:00"
+        {
+            return 300
+        }
+        else if time == "4:00"
+        {
+            return 240
+        }
+        else if time == "3:00"
+        {
+            return 180
+        }
+        else if time == "2:30"
+        {
+            return 150
+        }
+        else if time == "2:00"
+        {
+            return 120
+        }
+        else if time == "1:30"
+        {
+            return 90
+        }
+        else if time == "1:00"
+        {
+            return 60
+        }
+        else if time == "0:30"
+        {
+            return 30
+        }
+        return 180
+    }
+    
 }

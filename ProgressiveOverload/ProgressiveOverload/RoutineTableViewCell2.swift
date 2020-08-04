@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
+
 class RoutineTableViewCell2: UITableViewCell {
 
     override func awakeFromNib()
@@ -30,21 +30,9 @@ class RoutineTableViewCell2: UITableViewCell {
     @IBOutlet weak var previousLabel: UILabel!
    
     var exerciseName = ""
-    {
-        didSet
-        {
-            print("exerciselabel")
-         
-            
-        }
-    }
+  
     @IBOutlet weak var setNumberLabel: UILabel!
-    {
-        didSet{
-          
-            print("numberlabel")
-        }
-    }
+    
     
     var setsbyReps  = ""
     

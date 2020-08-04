@@ -31,7 +31,9 @@ class WorkoutMenueViewController: UIViewController
         }
        
     }
-        
+    @IBAction func clickedNewWorkout(_ sender: Any) {
+    }
+    
         var interests = Interest.fetchInterests(isRecommend: false)
     var recomendInterests = Interest.fetchInterests(isRecommend: true)
         let cellScaling: CGFloat = 0.6
@@ -103,6 +105,10 @@ class WorkoutMenueViewController: UIViewController
             performSegue(withIdentifier: "showRoutine", sender: self)
             
         }
+        
+        
+        
+        
     }
 
     extension WorkoutMenueViewController : UIScrollViewDelegate, UICollectionViewDelegate

@@ -11,10 +11,11 @@ import UIKit
 class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate
 {
    var routineModel = RoutineModel()
-    
+   
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        tableView.reloadData()
         
         // Initialization code
     }
@@ -27,7 +28,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     }
 
     var timerDisplayed = 0
-    var profileChosenTimer = 180
+    var profileChosenTimer = Int()
     var timer = Timer()
     var timerRunning = true
     @IBOutlet weak var label: UILabel!
@@ -141,7 +142,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     
     @IBAction func addRow(_ sender: Any)
     {
-        //self.tableView.reloadData()
+       
         var scheme = "0"
         if weightText.text != "", repsText.text != ""{
             scheme = weightText.text! + " x " + repsText.text!
@@ -153,12 +154,13 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         exerciseModel.setDatetoCurr()
         exerciseModel.exercise = label.text!
         exerciseModel.setsByReps = scheme
+       
         routineModel.realmWriteAll(obj: exerciseModel)
         if(setsByReps.count == prevLifts.count)
         {
              tableView.insertRows(at: [IndexPath(row: max(setsByReps.count, prevLifts.count) - 1, section: 0)], with: .automatic)
         }
-       
+        self.tableView.reloadData()
         repsText.resignFirstResponder()
         
         
@@ -174,11 +176,8 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
    {
     
-    print(max(prevLifts.count, setsByReps.count))
-    print("this is count")
-  //  return  max(prevLifts.count, setsByReps.count)
-    //return prevLifts.count
-    return max(prevLifts.count, setsByReps.count)
+   
+    return max(prevLifts.count, setsByReps.count) + 2
       }
     
     
@@ -193,9 +192,11 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         if let lbl = cell?.contentView.viewWithTag(101) as? UILabel{
             if (indexPath.row < setsByReps.count)
             {
+            
                 lbl.text = setsByReps[indexPath.row]
             }
             else{
+            
                 lbl.text = ""
             }
         }
@@ -214,30 +215,20 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
                 lbl3.text = ""
             }
         }
-      //    cell.exerciseName = label.text!
-        
-      //  cell.previousLabel.text = prevLifts[indexPath.row]
+  
           
                     
               
        
-        print(label.text! + "sadasdas")
+       
                     
               
-      //  cell.setNumberLabel.text = nil
-   
-  //      cell.setNumberLabel.text = String(indexPath.row + 1) + "."
-        
-    //    cell.todayLabel.text = nil
-     //   cell.todayLabel.text = setsByReps[indexPath.row]
-        
-      
-       // cell.setsbyReps = setsByReps[indexPath.row]
+  
         return cell!
       }
     
     
-    
+    /*
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     {
         let action = UIContextualAction(style: .destructive, title: "Delete") {(action, view, completion) in
@@ -265,6 +256,33 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
        }
     
    
+    */
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        //routineModel.findPrevious(exercise: label.text!)
+        print("checks can edit row \(indexPath) sets is \(setsByReps.count)")
+        if setsByReps.count <= 0 || indexPath.row >= setsByReps.count {
+            return false
+        }
+        else{
+            return true
+        }
+    }
     
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        guard editingStyle == .delete else {return}
+      
+        routineModel.findPrevious(exercise: label.text!)
+       var listOfObjects =  routineModel.getCurrentLiftsObjects()
+      
+            setsByReps.remove(at: indexPath.row)
+           // prevLifts.remove(at: prevLifts.count - 1 )
+            let deletedSet = listOfObjects.remove(at: indexPath.row)
+            routineModel.remove(obj: deletedSet )
+            //tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+       
+        tableView.reloadData()
+    }
 }

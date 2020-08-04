@@ -300,6 +300,9 @@
                                 <state key="normal" title="+ New Workout +">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickedNewWorkout:" destination="mwZ-ng-XZo" eventType="touchUpInside" id="U5L-V7-ECo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -505,13 +508,20 @@
                         <viewLayoutGuide key="safeArea" id="cdB-yX-u7b"/>
                     </view>
                     <navigationItem key="navigationItem" id="pN2-B0-NBG">
-                        <barButtonItem key="rightBarButtonItem" title="+" image="plus" catalog="system" width="1" id="BiI-7S-CAD">
-                            <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
-                            <connections>
-                                <action selector="addButton:" destination="f4p-TM-V9C" id="W6o-aN-dNz"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="+" image="plus" catalog="system" width="1" id="BiI-7S-CAD">
+                                <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                                <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <action selector="addButton:" destination="f4p-TM-V9C" id="W6o-aN-dNz"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="timer" catalog="system" id="qyI-Bm-IxZ">
+                                <connections>
+                                    <action selector="clickedTimer:" destination="f4p-TM-V9C" id="OrQ-j5-szy"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="EXf-MN-NB3" id="kUq-4M-rtw"/>
