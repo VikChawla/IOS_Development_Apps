@@ -13,8 +13,10 @@ class RoutineModel
     var realm = try! Realm()
     var currLifts = [String]()
     var currLiftsObjects = [ExerciseModel]()
-    func findPrevious(exercise: String) -> [String]?
+    
+    func findPrevious(exercise: String, prevNum: Int ) -> [String]?
        {
+         print(Realm.Configuration.defaultConfiguration.fileURL)
         print("run once")
         var currLiftsTemp = [String]()
         var currLiftsObjectsTemp = [ExerciseModel]()
@@ -22,7 +24,8 @@ class RoutineModel
           let formatter = DateFormatter()
                    formatter.timeZone = .current
                    formatter.locale = .current
-                   formatter.dateFormat = "MM/dd/yyyy"
+                   //formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"//"y-MM-dd H:m:ss.SSSS"//"MM/dd/yy
+        
                  formatter.dateStyle = .full
                  formatter.timeStyle = .full
                  
@@ -38,7 +41,8 @@ class RoutineModel
                    return formatter.date(from: $0.date ?? "")?.compare(formatter.date(from: $1.date ?? "")!) == .orderedDescending
                     //  $0.date.compare($1.date) == .orderedDescending
                   })
-           
+        
+        
            
         let currDateFirst = Date()
         
@@ -46,13 +50,16 @@ class RoutineModel
         var currDate = formatter.date(from: currDate2)
         currDate = removeTimeStamp(fromDate: currDate!)
         var res = [String]()
+      //  for i in 0..<prevNum
+       // {
+        //var resLoop = [String]()
            for i in 0..<resultsArr.count
            {
               
                 var dateOne =  formatter.date(from: resultsArr[i].date!)
                 dateOne = removeTimeStamp(fromDate: dateOne!)
-                var currDateCount = i
-            if(dateOne == currDate)
+                
+                if(dateOne == currDate)
                 {
                     currLiftsTemp.append(resultsArr[i].setsByReps!)
                     currLiftsObjectsTemp.append(resultsArr[i])
@@ -60,32 +67,46 @@ class RoutineModel
                 
                 let dateOneCurr = dateOne
                 
-                
-                if(dateOne != currDate)
-                {
-                    var count = i
-                    while(dateOne == dateOneCurr && count + 1 < resultsArr.count)
-                    {
-                        res.append(resultsArr[count].setsByReps!)
-                        count = count + 1
-                      
-                        
-                        dateOne = formatter.date(from: resultsArr[count].date!)
-                        dateOne = removeTimeStamp(fromDate: dateOne!)
-                    }
-                    currLifts = currLiftsTemp
-                    currLiftsObjects = currLiftsObjectsTemp
-                  
-                    return res.reversed()
-                   
-                }
-           }
             
+            
+                
+               
+           
+                    if(dateOne != currDate)
+                    {
+                        var count = i
+                         
+                        while(dateOne == dateOneCurr && count < resultsArr.count)
+                        {
+                            res.append(resultsArr[count].setsByReps!)
+                            
+                          
+                            
+                            dateOne = formatter.date(from: resultsArr[count].date!)
+                            dateOne = removeTimeStamp(fromDate: dateOne!)
+                            count = count + 1
+                        }
+                        
+                        currLifts = currLiftsTemp
+                        currLiftsObjects = currLiftsObjectsTemp
+                        print("shit is aids \(exercise)")
+                        print(res.reversed())
+                        return res.reversed()
+                        //break
+                    }
+                    
+            
+           
+           }
+           
+           
+        
         currLifts = currLiftsTemp
         currLiftsObjects = currLiftsObjectsTemp
-                      
-              
-            return ["No Previous Lifts"]
+            return [""]
+        
+        return res.reversed()
+
            
        }
     

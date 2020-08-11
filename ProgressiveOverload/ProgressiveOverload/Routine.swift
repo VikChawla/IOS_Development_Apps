@@ -10,6 +10,6 @@ import Foundation
 import RealmSwift
 
 class Routine: Object{
-    @objc dynamic var exerciseList: [String] = []
+    var exercises = List<String>()
     @objc dynamic var name: String?
 }

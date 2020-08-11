@@ -12,13 +12,17 @@ import RealmSwift
 class RoutineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     
- 
-    var nameArr = ["Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys", "Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys"]
-   
+    var exerciseList = ExerciseListModel()
+    
+  //  var nameArr = ["Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys", "Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys"]
+    lazy var nameArr = exerciseList.getExerciseList(routineName: titleOfVC)
     var selectedIndex = -1
     var iscollapse = false
-    
+    var titleOfVC = String()
     var selectedTime = 180
+    lazy var routine = exerciseList.getRoutine(exerciseName: titleOfVC)
+    var isCustom = true
+    
     
     override func viewDidLoad()
     {
@@ -27,13 +31,14 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
                 tableView.dataSource = self
            
           adjustLargeTitleSize()
+       
         
         
        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.selectedIndex == indexPath.row && iscollapse == true{
-            return 400
+            return 386
         }
         else{
             return 50
@@ -43,23 +48,26 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func addButton(_ sender: Any)
     {
-        let alert = UIAlertController(title: "Add Exercise", message: nil, preferredStyle: .alert)
-        alert.addTextField {
-            (exerciseTF) in exerciseTF.placeholder = "Enter Exercise"
-        }
-        let action = UIAlertAction(title: "Add", style:.default) {(_) in
-            guard let exercise = alert.textFields?.first?.text else{
-                return
+        if(isCustom){
+            let alert = UIAlertController(title: "Add Exercise", message: nil, preferredStyle: .alert)
+            alert.addTextField {
+                (exerciseTF) in exerciseTF.placeholder = "Enter Exercise"
             }
+            let action = UIAlertAction(title: "Add", style:.default) {(_) in
+                guard let exercise = alert.textFields?.first?.text else{
+                    return
+                }
+                
+                self.add(exercise)
+                
+            }
+            let actionCancle = UIAlertAction(title: "Cancle", style: .cancel)
+            alert.addAction(actionCancle)
             
-            self.add(exercise)
-            
+            alert.addAction(action)
+            present(alert, animated:true)
         }
-        let actionCancle = UIAlertAction(title: "Cancle", style: .cancel)
-        alert.addAction(actionCancle)
         
-        alert.addAction(action)
-        present(alert, animated:true)
     }
     @IBAction func clickedTimer(_ sender: Any)
     {
@@ -80,11 +88,18 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func add(_ exercise: String)
     {
-        let index = 0
-        nameArr.insert(exercise, at:index)
-        
+       
+        print(exercise)
+        exerciseList.addExercise(exercise: exercise, name: titleOfVC)
+        nameArr = exerciseList.getExerciseList(routineName: titleOfVC)
+        let index = nameArr.count - 1
         let indexPath = IndexPath(row: index, section:0)
         tableView.insertRows(at: [indexPath], with: .top)
+        //routine.exercises.append(exercise)
+        
+        
+        //exerciseList.updateRoutine(routine: routine)
+       
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
@@ -98,11 +113,19 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         
-                print(iscollapse)
-                          guard editingStyle == .delete else {return}
-                          nameArr.remove(at: indexPath.row)
-                          tableView.deleteRows(at: [indexPath], with: .automatic)
-            
+                
+        guard editingStyle == .delete else {return}
+        print(indexPath.row)
+        print(routine.exercises)
+        //var exerciseToDelete = Array(routine.exercises)[indexPath.row]
+        //routine.exercises.remove(at: indexPath.row)
+        //print("asdasd")
+        //nameArr.remove(at: indexPath.row)
+        
+        exerciseList.removeExercise(name: titleOfVC, pos: indexPath.row)
+        nameArr = exerciseList.getExerciseList(routineName: titleOfVC)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
           
         
       
@@ -124,9 +147,13 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.exercise.text! = nameArr[indexPath.row]
         cell.imageIMG.image = UIImage(named: "\(imageArr[indexPath.row])")
  */
+        
         cell.tableView.cellForRow(at: indexPath)
-        cell.profileChosenTimer = selectedTime
         cell.label.text = nameArr[indexPath.row]
+        cell.profileChosenTimer = selectedTime
+        print(nameArr)
+        print(nameArr[indexPath.row])
+        
         
         return cell
      }
@@ -158,7 +185,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
       tableView.reloadRows(at: [indexPath], with: .automatic)
         let cell = tableView.cellForRow(at: indexPath) as! RoutineTableViewCell
                print("hit here even?")
-        cell.prevLifts = cell.routineModel.findPrevious(exercise: nameArr[indexPath.row])!
+        cell.prevLifts = cell.routineModel.findPrevious(exercise: nameArr[indexPath.row], prevNum: 1)!
         cell.setsByReps = cell.routineModel.getCurrentLifts()
       
         print(cell.setsByReps)

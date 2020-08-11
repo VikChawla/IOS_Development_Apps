@@ -10,8 +10,10 @@ import UIKit
 
 class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate
 {
+    
+    
    var routineModel = RoutineModel()
-   
+   var exerciseListModel = ExerciseListModel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +33,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     var profileChosenTimer = Int()
     var timer = Timer()
     var timerRunning = true
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet var label: UILabel!
     
     
     @IBOutlet weak var timerButton: UIButton!
@@ -40,6 +42,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     
     @IBAction func timerAction(_ sender: Any)
     {
+       
         if(timerRunning){
             timerRunning = false
         }
@@ -148,7 +151,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
             scheme = weightText.text! + " x " + repsText.text!
         }
         
-        prevLifts.insert("", at: prevLifts.count)
+      //  prevLifts.insert("", at: prevLifts.count)
         setsByReps.insert(scheme, at: setsByReps.count)
         let exerciseModel = ExerciseModel()
         exerciseModel.setDatetoCurr()
@@ -156,10 +159,12 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         exerciseModel.setsByReps = scheme
        
         routineModel.realmWriteAll(obj: exerciseModel)
+        /*
         if(setsByReps.count == prevLifts.count)
         {
              tableView.insertRows(at: [IndexPath(row: max(setsByReps.count, prevLifts.count) - 1, section: 0)], with: .automatic)
         }
+ */
         self.tableView.reloadData()
         repsText.resignFirstResponder()
         
@@ -260,7 +265,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         //routineModel.findPrevious(exercise: label.text!)
-        print("checks can edit row \(indexPath) sets is \(setsByReps.count)")
+      
         if setsByReps.count <= 0 || indexPath.row >= setsByReps.count {
             return false
         }
@@ -272,8 +277,8 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         guard editingStyle == .delete else {return}
-      
-        routineModel.findPrevious(exercise: label.text!)
+        print(label.text!)
+        routineModel.findPrevious(exercise: label.text!, prevNum: 1)
        var listOfObjects =  routineModel.getCurrentLiftsObjects()
       
             setsByReps.remove(at: indexPath.row)
@@ -285,4 +290,30 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
        
         tableView.reloadData()
     }
+    
+    var prevCounter = 1
+    var prevPrevVals = [String]()
+    @IBOutlet weak var extraPrevButton: UIButton!
+        
+     
+    @IBAction func findExtraPrev(_ sender: Any)
+    {
+        prevCounter = prevCounter + 1
+        prevPrevVals = routineModel.findPrevious(exercise: label.text!,prevNum: prevCounter)!
+            if(prevPrevVals.first == "")
+            {
+                extraPrevButton.setImage(UIImage(systemName: "arrowshape.turn.up.left"), for: .normal)
+            }
+            else{
+                extraPrevButton.setImage(UIImage(systemName:  "arrowshape.turn.up.left.fill"), for: .normal)
+            }
+        
+        
+        prevLifts = prevPrevVals
+        tableView.reloadData()
+        
+    }
+    
+    
+    
 }

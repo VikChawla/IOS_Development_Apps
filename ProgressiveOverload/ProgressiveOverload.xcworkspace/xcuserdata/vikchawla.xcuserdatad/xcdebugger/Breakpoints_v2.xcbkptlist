@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7A88AE7E-3640-4BEB-9374-8200AEBE1E78"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C874713-0155-4E5B-99F9-81ED25F9CB4A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProgressiveOverload/Interest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "fetchInterests(isRecommend:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4A40B43-3818-4E6C-9558-D89973439188"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ExerciseListModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getExerciseList(routineName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ProgressiveOverload/RoutineTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "RoutineTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 3f67e1980791f70f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.timerDisplayed.getter : Swift.Int"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 7a7eccbeac6ef37b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.timerDisplayed.setter : Swift.Int"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "118">
+               </Location>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 8830e2f12c8b2608"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.timerDisplayed.modify : Swift.Int"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 3fa7751d245b6824"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.timerDisplayed.modify : Swift.Int with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 66ced32e12b3ceba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; ProgressiveOverload.RoutineTableViewCell"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "736">
+               </Location>
+               <Location
+                  uuid = "522DBA34-2949-467F-94FA-CD99C7D796C9 - 45b8fbb997353292"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ProgressiveOverload.RoutineTableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ProgressiveOverload.RoutineTableViewCell&gt;"
+                  moduleName = "ProgressiveOverload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vikchawla/developer/ProgressiveOverload/ProgressiveOverload/RoutineTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "677">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
