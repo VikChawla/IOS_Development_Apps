@@ -61,7 +61,11 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
             timer.invalidate()
             timerDisplayed = 0
              timerButton.setTitle(nil, for: [])
-             timerButton.setImage(UIImage(systemName: "timer"), for: [])
+            if #available(iOS 13.0, *) {
+                timerButton.setImage(UIImage(named: "SF_timer-1"), for: [])
+            } else {
+                timerButton.setImage(UIImage(named: "SF_timer-1"), for: .normal)
+            }
         }
     }
     
@@ -182,7 +186,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
    {
     
    
-    return max(prevLifts.count, setsByReps.count) + 2
+    return max(prevLifts.count, setsByReps.count)
       }
     
     
@@ -193,12 +197,13 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
       {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")// as! RoutineTableViewCell2
-        cell?.backgroundColor = .systemGray6
+        cell?.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1.0)//.systemGray6
         if let lbl = cell?.contentView.viewWithTag(101) as? UILabel{
             if (indexPath.row < setsByReps.count)
             {
             
                 lbl.text = setsByReps[indexPath.row]
+                lbl.font = UIFont(name: "Avenir Light" , size: 17)
             }
             else{
             
@@ -208,12 +213,14 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         
         if let lbl2 = cell?.contentView.viewWithTag(103) as? UILabel{
             lbl2.text = String(indexPath.row + 1) + "."
+             lbl2.font = UIFont(name: "Avenir Light" , size: 17)
         }
         
         if let lbl3 = cell?.contentView.viewWithTag(102) as? UILabel{
             if(indexPath.row < prevLifts.count)
             {
                  lbl3.text = prevLifts[indexPath.row]
+                 lbl3.font = UIFont(name: "Avenir Light" , size: 17)
             }
            else
             {
@@ -295,7 +302,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     var prevPrevVals = [String]()
     @IBOutlet weak var extraPrevButton: UIButton!
         
-     
+     /*
     @IBAction func findExtraPrev(_ sender: Any)
     {
         prevCounter = prevCounter + 1
@@ -313,7 +320,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         tableView.reloadData()
         
     }
-    
+    */
     
     
 }

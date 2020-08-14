@@ -12,7 +12,9 @@ import UIKit
 
 class WorkoutMenueViewController: UIViewController
 {
-    
+     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
     
     var nextVCTitle = ""
      var isCustomVC = true
@@ -52,9 +54,10 @@ class WorkoutMenueViewController: UIViewController
                 (routineName) in routineName.placeholder = "Enter Name"
             }
             let action = UIAlertAction(title: "Add", style:.default) {(_) in
-                guard let name = alert.textFields?.first?.text else{
+                guard var name = alert.textFields?.first?.text else{
                     return
                 }
+                name = name.replacingOccurrences(of: "\'", with: "").replacingOccurrences(of: "\"", with: "")
                 self.nextVCTitle = name
                 
                 let routineName = Routine()
@@ -82,8 +85,9 @@ class WorkoutMenueViewController: UIViewController
     var recomendInterests = Interest.fetchInterests(isRecommend: true)
         let cellScaling: CGFloat = 0.6
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
+        override func viewDidLoad()
+        {
+                        super.viewDidLoad()
             
             
         }

@@ -24,10 +24,10 @@ class CustomButton: UIButton {
     
     func setupButton() {
         setShadow()
-        setTitleColor(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1), for: .normal)
+        setTitleColor(UIColor(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0), for: .normal)
         
         backgroundColor      = #colorLiteral(red: 0.929725945, green: 0.9298816919, blue: 0.9297055006, alpha: 1)
-        titleLabel?.font     = UIFont(name: "Cochin-Bold ", size: 18)
+        titleLabel?.font     = UIFont(name: "Avenir Black", size: 18)
         layer.cornerRadius   = 25
         layer.borderWidth    = 1.0
         layer.borderColor    = UIColor.darkGray.cgColor

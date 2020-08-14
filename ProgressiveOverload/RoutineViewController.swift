@@ -11,7 +11,9 @@ import RealmSwift
 
 class RoutineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-    
+     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
     var exerciseList = ExerciseListModel()
     
   //  var nameArr = ["Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys", "Bench press", "Incline Dumbell Press", "Calf Raises", "Decline Bench Press", "Chest Flys"]
@@ -27,23 +29,27 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         tableView.delegate = self
                 tableView.dataSource = self
            
           adjustLargeTitleSize()
-       
         
+       let navigationFont = UIFont(name: "Avenir Black", size: 40)
+              let navigationFontAttributes = [NSAttributedString.Key.font : navigationFont]
+      //  navigationController?.navigationBar.largeTitleTextAttributes = navigationFontAttributes
         
        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.selectedIndex == indexPath.row && iscollapse == true{
-            return 386
+            return 320
         }
         else{
             return 50
         }
     }
+    
     
     
     @IBAction func addButton(_ sender: Any)
@@ -67,6 +73,13 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
             alert.addAction(action)
             present(alert, animated:true)
         }
+        else{
+            let alert = UIAlertController(title: "Stick to the essentials 🙃\n\n", message: nil, preferredStyle: .alert)
+                     
+                     let actionCancle = UIAlertAction(title: "You're right!", style: .default)
+                            alert.addAction(actionCancle)
+                      present(alert, animated:true)
+        }
         
     }
     @IBAction func clickedTimer(_ sender: Any)
@@ -74,9 +87,11 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         let alert = UIAlertController(title: "Choose Time", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         createTimePicker()
         let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 160))
+        
         alert.view.addSubview(pickerFrame)
         pickerFrame.dataSource = self
         pickerFrame.delegate = self
+        pickerFrame.selectRow(2, inComponent: 0, animated: true)
           alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
               
@@ -104,6 +119,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
+        if(!isCustom){return false}
         if self.selectedIndex == indexPath.row && iscollapse == true{
             return false
         }
@@ -113,7 +129,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         
-                
+        
         guard editingStyle == .delete else {return}
         print(indexPath.row)
         print(routine.exercises)
@@ -207,21 +223,25 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 }
 
+
 extension UIViewController {
   func adjustLargeTitleSize() {
-    guard let title = title, #available(iOS 11.0, *) else { return }
-
+    guard let title = title, #available(iOS 10.0, *)
+        else { return }
+    var font = UIFont(name: "Avenir Black", size: 40)
     let maxWidth = UIScreen.main.bounds.size.width - 60
-    var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
-    var width = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)]).width
+    
+    var fontSize = font!.pointSize//UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
+    var width = title.size(withAttributes: [NSAttributedString.Key.font: font]).width
 
     while width > maxWidth {
       fontSize -= 1
-        width = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)]).width
+        width = title.size(withAttributes: [NSAttributedString.Key.font:UIFont(name: "Avenir Black", size: fontSize) ]).width
+        font = UIFont(name: "Avenir Black", size: fontSize)
     }
 
     navigationController?.navigationBar.largeTitleTextAttributes =
-        [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: fontSize)
+        [NSAttributedString.Key.font: font//UIFont.boldSystemFont(ofSize: fontSize)
     ]
   }
 }
