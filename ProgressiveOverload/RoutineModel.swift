@@ -16,21 +16,28 @@ class RoutineModel
     
     func findPrevious(exercise: String, prevNum: Int ) -> [String]?
        {
-         print(Realm.Configuration.defaultConfiguration.fileURL)
-        print("run once")
+        // print(Realm.Configuration.defaultConfiguration.fileURL)
+        
         var currLiftsTemp = [String]()
         var currLiftsObjectsTemp = [ExerciseModel]()
         
-          let formatter = DateFormatter()
-                   formatter.timeZone = .current
-                   formatter.locale = .current
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateStyle = .full
+        formatter.timeStyle = .full
+        
+        let formatterDate = DateFormatter()
+        formatterDate.timeZone = .current
+        formatterDate.locale = .current
                    //formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"//"y-MM-dd H:m:ss.SSSS"//"MM/dd/yy
         
-                 formatter.dateStyle = .full
-                 formatter.timeStyle = .full
-                 
+        formatterDate.dateStyle = .full
+        
+        
+        
            
-        let results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
+        var results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
         if(results.count <= 0 ) {return [""]}
         
            var resultsArr = Array(results)
@@ -45,10 +52,11 @@ class RoutineModel
         
            
         let currDateFirst = Date()
+              let currDate2 = formatter.string(from: currDateFirst)
+              var currDate = formatter.date(from: currDate2)
+              currDate = removeTimeStamp(fromDate: currDate!)
         
-        let currDate2 = formatter.string(from: currDateFirst)
-        var currDate = formatter.date(from: currDate2)
-        currDate = removeTimeStamp(fromDate: currDate!)
+        
         var res = [String]()
       //  for i in 0..<prevNum
        // {
@@ -58,19 +66,21 @@ class RoutineModel
               
                 var dateOne =  formatter.date(from: resultsArr[i].date!)
                 dateOne = removeTimeStamp(fromDate: dateOne!)
+                //print(dateOne)
+                //print(currDate)
                 
                 if(dateOne == currDate)
                 {
                     currLiftsTemp.append(resultsArr[i].setsByReps!)
                     currLiftsObjectsTemp.append(resultsArr[i])
+                    
                 }
                 
                 let dateOneCurr = dateOne
-                
-            
-            
-                
                
+            
+                
+                
            
                     if(dateOne != currDate)
                     {
@@ -79,18 +89,24 @@ class RoutineModel
                         while(dateOne == dateOneCurr && count < resultsArr.count)
                         {
                             res.append(resultsArr[count].setsByReps!)
-                            
+                         
                           
-                            
-                            dateOne = formatter.date(from: resultsArr[count].date!)
-                            dateOne = removeTimeStamp(fromDate: dateOne!)
-                            count = count + 1
+                            if(count + 1 < resultsArr.count){
+                                count = count + 1
+                                dateOne = formatter.date(from: resultsArr[count].date!)
+                                 dateOne = removeTimeStamp(fromDate: dateOne!)
+                            }
+                            else{
+                                break
+                            }
+                             
+                           
                         }
                         
                         currLifts = currLiftsTemp
                         currLiftsObjects = currLiftsObjectsTemp
-                        print("shit is aids \(exercise)")
-                        print(res.reversed())
+                       
+                     //   print(res.reversed())
                         return res.reversed()
                         //break
                     }
@@ -105,10 +121,69 @@ class RoutineModel
         currLiftsObjects = currLiftsObjectsTemp
             return [""]
         
-        return res.reversed()
+       // return res.reversed()
 
            
        }
+    
+    func findCurrent(exercise: String) -> [String]
+    {
+        let formatterDate = DateFormatter()
+        formatterDate.timeZone = .current
+        formatterDate.locale = .current
+        formatterDate.dateStyle = .full
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        formatter.dateStyle = .full
+        formatter.timeStyle = .full
+        
+        var results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
+        let todaysDate = Date()
+        let todaysDate2 = removeTimeStamp(fromDate: todaysDate)
+        let todaysDateString = formatterDate.string(from: todaysDate2)
+        print(todaysDateString)
+        results = results.filter("date CONTAINS '\(todaysDateString)'")
+        var resultsArr = Array(results)
+        resultsArr = resultsArr.sorted(by:
+        {
+            return formatter.date(from: $0.date ?? "")?.compare(formatter.date(from: $1.date ?? "")!) == .orderedDescending
+        
+        })
+        for i in 0..<resultsArr.count{
+            currLifts.append(resultsArr[i].setsByReps!)
+        }
+        
+        return currLifts.reversed()
+    }
+    
+    
+    func findPreviousButton(exercise: String, prevNum: Int )
+    {
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+                          //formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"//"y-MM-dd H:m:ss.SSSS"//"MM/dd/yy
+               
+        formatter.dateStyle = .full
+        formatter.timeStyle = .full
+        
+        let results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
+        
+       // if(results.count <= 0 ) //{return [""]}
+        var counter = 0;
+        
+        
+       
+        while(counter != prevNum)
+        {
+            
+        }
+        
+        
+    }
+   
     
     func realmWriteAll(obj: ExerciseModel)
     {

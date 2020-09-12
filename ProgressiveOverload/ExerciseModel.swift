@@ -22,9 +22,7 @@ class ExerciseModel: Object {
         self.setsByReps = setsByReps
     }
     */
-    override required init() {
-        //fatalError("init() has not been implemented")
-    }
+   
     
     func setDatetoCurr(){
        let formatter = DateFormatter()

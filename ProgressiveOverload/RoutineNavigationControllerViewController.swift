@@ -16,8 +16,8 @@ class RoutineNavigationControllerViewController: UINavigationController {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.titleTextAttributes =
         navigationBar.shadowImage = UIImage()
-        let navigationFont = UIFont(name: "Avenir Black", size: 40)
-        let navigationFontAttributes = [NSAttributedString.Key.font : navigationFont]
+       // let navigationFont = UIFont(name: "Avenir Black", size: 40)
+       // let navigationFontAttributes = [NSAttributedString.Key.font : navigationFont]
      //   navigationBar.largeTitleTextAttributes = navigationFontAttributes
 
         // Do any additional setup after loading the view.

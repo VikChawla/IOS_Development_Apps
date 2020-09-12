@@ -23,7 +23,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     var titleOfVC = String()
     var selectedTime = 180
     lazy var routine = exerciseList.getRoutine(exerciseName: titleOfVC)
-    var isCustom = true
+    var isCustom = Bool()
     
     
     override func viewDidLoad()
@@ -35,8 +35,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
            
           adjustLargeTitleSize()
         
-       let navigationFont = UIFont(name: "Avenir Black", size: 40)
-              let navigationFontAttributes = [NSAttributedString.Key.font : navigationFont]
+      
       //  navigationController?.navigationBar.largeTitleTextAttributes = navigationFontAttributes
         
        
@@ -54,7 +53,8 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func addButton(_ sender: Any)
     {
-        if(isCustom){
+        let isCustom2 = exerciseList.getReccWorkoutExerciseList(routineName: titleOfVC).count
+        if(isCustom2 < 2){
             let alert = UIAlertController(title: "Add Exercise", message: nil, preferredStyle: .alert)
             alert.addTextField {
                 (exerciseTF) in exerciseTF.placeholder = "Enter Exercise"
@@ -67,14 +67,15 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.add(exercise)
                 
             }
-            let actionCancle = UIAlertAction(title: "Cancle", style: .cancel)
+            let actionCancle = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(actionCancle)
             
             alert.addAction(action)
             present(alert, animated:true)
+            
         }
-        else{
-            let alert = UIAlertController(title: "Stick to the essentials 🙃\n\n", message: nil, preferredStyle: .alert)
+        else {
+            let alert = UIAlertController(title: "Stick to the essentials 🙃\n", message: nil, preferredStyle: .alert)
                      
                      let actionCancle = UIAlertAction(title: "You're right!", style: .default)
                             alert.addAction(actionCancle)
@@ -104,7 +105,7 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
     func add(_ exercise: String)
     {
        
-        print(exercise)
+       
         exerciseList.addExercise(exercise: exercise, name: titleOfVC)
         nameArr = exerciseList.getExerciseList(routineName: titleOfVC)
         let index = nameArr.count - 1
@@ -131,11 +132,11 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         guard editingStyle == .delete else {return}
-        print(indexPath.row)
-        print(routine.exercises)
+        
+        
         //var exerciseToDelete = Array(routine.exercises)[indexPath.row]
         //routine.exercises.remove(at: indexPath.row)
-        //print("asdasd")
+      
         //nameArr.remove(at: indexPath.row)
         
         exerciseList.removeExercise(name: titleOfVC, pos: indexPath.row)
@@ -167,8 +168,8 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.tableView.cellForRow(at: indexPath)
         cell.label.text = nameArr[indexPath.row]
         cell.profileChosenTimer = selectedTime
-        print(nameArr)
-        print(nameArr[indexPath.row])
+        
+      
         
         
         return cell
@@ -200,11 +201,11 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         
       tableView.reloadRows(at: [indexPath], with: .automatic)
         let cell = tableView.cellForRow(at: indexPath) as! RoutineTableViewCell
-               print("hit here even?")
+            
         cell.prevLifts = cell.routineModel.findPrevious(exercise: nameArr[indexPath.row], prevNum: 1)!
         cell.setsByReps = cell.routineModel.getCurrentLifts()
       
-        print(cell.setsByReps)
+       
        
         //cell.
           
@@ -232,16 +233,16 @@ extension UIViewController {
     let maxWidth = UIScreen.main.bounds.size.width - 60
     
     var fontSize = font!.pointSize//UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
-    var width = title.size(withAttributes: [NSAttributedString.Key.font: font]).width
+    var width = title.size(withAttributes: [NSAttributedString.Key.font: font!]).width
 
     while width > maxWidth {
       fontSize -= 1
-        width = title.size(withAttributes: [NSAttributedString.Key.font:UIFont(name: "Avenir Black", size: fontSize) ]).width
+        width = title.size(withAttributes: [NSAttributedString.Key.font:UIFont(name: "Avenir Black", size: fontSize)! ]).width
         font = UIFont(name: "Avenir Black", size: fontSize)
     }
 
     navigationController?.navigationBar.largeTitleTextAttributes =
-        [NSAttributedString.Key.font: font//UIFont.boldSystemFont(ofSize: fontSize)
+        [NSAttributedString.Key.font: font!//UIFont.boldSystemFont(ofSize: fontSize)
     ]
   }
 }
@@ -271,7 +272,7 @@ extension RoutineViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     func calcTime(time: String) -> Int
     {
-        print("coming here??")
+        
         if time == "5:00"
         {
             return 300

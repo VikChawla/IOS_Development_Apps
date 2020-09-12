@@ -58,15 +58,26 @@ class WorkoutMenueViewController: UIViewController
                     return
                 }
                 name = name.replacingOccurrences(of: "\'", with: "").replacingOccurrences(of: "\"", with: "")
-                self.nextVCTitle = name
+                if(self.exerciseList.getReccWorkoutExerciseList(routineName: name).count > 1)
+                {
+                    let alert2 = UIAlertController(title: "Already a Recommended Routine!", message: nil, preferredStyle: .alert)
+                    
+                    let actionCancle = UIAlertAction(title: "I'll choose a different name!", style: .default)
+                           alert2.addAction(actionCancle)
+                    self.present(alert2, animated:true)
+                }
+                else{
+                    self.nextVCTitle = name
+                    
+                    let routineName = Routine()
+                    routineName.name = name
+                    self.exerciseList.realmWriteAll(obj: routineName)
+                    self.interests = Interest.fetchInterests(isRecommend: false)
+                    self.recomendInterests = Interest.fetchInterests(isRecommend: true)
+                    self.collectionView.reloadData()
+                    self.performSegue(withIdentifier: "showRoutine", sender: self)
+                }
                 
-                let routineName = Routine()
-                routineName.name = name
-                self.exerciseList.realmWriteAll(obj: routineName)
-                self.interests = Interest.fetchInterests(isRecommend: false)
-                self.recomendInterests = Interest.fetchInterests(isRecommend: true)
-                self.collectionView.reloadData()
-                self.performSegue(withIdentifier: "showRoutine", sender: self)
                 
             }
             

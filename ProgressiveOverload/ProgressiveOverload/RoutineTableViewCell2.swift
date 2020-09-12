@@ -48,7 +48,7 @@ class RoutineTableViewCell2: UITableViewCell {
           formatter.dateFormat = "MM/dd/yyyy"
         formatter.dateStyle = .full
         formatter.timeStyle = .full
-        let stringOfDate = formatter.string(from: date)
+        _ = formatter.string(from: date)
        
         
            

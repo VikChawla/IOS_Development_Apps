@@ -20,6 +20,7 @@ class ExerciseListModel
     func realmWriteAll(obj: Routine )
     {
          print(Realm.Configuration.defaultConfiguration.fileURL)
+       // print("asdasdasdas")
         try! realm.write {
             realm.add(obj)
         
@@ -55,18 +56,18 @@ class ExerciseListModel
     func addExercise(exercise: String, name:String)
     {
         let objectInRealm = realm.objects(Routine.self).filter("name = '\(name)'")
-        print(objectInRealm)
-        print("in exerciseModel \(exercise)")
+   
+       
         if(objectInRealm.count > 0)
         {
-            print("hit >= 1")
+           
             let obj = objectInRealm.first
             
             try! realm.write{
                 
-                print("routineexercises")
+                
                 obj!.exercises.append(exercise)
-                print(obj?.exercises)
+              
             }
         }
         
@@ -75,7 +76,7 @@ class ExerciseListModel
     func removeRoutine(name: String)
     {
         let objectInRealm = realm.objects(Routine.self).filter("name = '\(name)'")
-        print(objectInRealm)
+    
         try! realm.write {
             realm.delete(objectInRealm.first!)
            
@@ -141,6 +142,11 @@ class ExerciseListModel
         {
             return ["Squat", "Leg-Press", "Hamstring-Curls", "Calf-Raises"]
         }
-        return ["rip"]
+        return [""]
+    }
+    
+    func Preload() {
+       var routine1 = Routine()
+    
     }
 }

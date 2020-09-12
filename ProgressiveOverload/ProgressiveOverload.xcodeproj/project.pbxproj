@@ -19,27 +19,19 @@
 		90AE9EA124C0C87D00E50761 /* RoutineTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AE9EA024C0C87D00E50761 /* RoutineTableViewCell2.swift */; };
 		90DB2165249968D500B5A061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB2164249968D500B5A061 /* AppDelegate.swift */; };
 		90DB2167249968D500B5A061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB2166249968D500B5A061 /* SceneDelegate.swift */; };
-		90DB2169249968D500B5A061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB2168249968D500B5A061 /* ViewController.swift */; };
 		90DB216C249968D500B5A061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DB216A249968D500B5A061 /* Main.storyboard */; };
 		90DB216E249968D700B5A061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90DB216D249968D700B5A061 /* Assets.xcassets */; };
 		90DB2171249968D700B5A061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90DB216F249968D700B5A061 /* LaunchScreen.storyboard */; };
-		90DB217924996F4600B5A061 /* calculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB217824996F4600B5A061 /* calculationModel.swift */; };
-		90DB217D2499875100B5A061 /* valuesTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB217C2499875100B5A061 /* valuesTextField.swift */; };
-		90DB217F249BCC8500B5A061 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB217E249BCC8500B5A061 /* StatisticsView.swift */; };
-		90DB218124A10BCF00B5A061 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB218024A10BCF00B5A061 /* WorkoutViewController.swift */; };
-		90DB218324A11EC800B5A061 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB218224A11EC800B5A061 /* InfoViewController.swift */; };
-		90DB218524A133FF00B5A061 /* LiftingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB218424A133FF00B5A061 /* LiftingViewController.swift */; };
 		90DE989E24E584EA007D24E7 /* RoutineNavigationControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE989D24E584EA007D24E7 /* RoutineNavigationControllerViewController.swift */; };
 		90E8863A24B4F4680082ED50 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8863924B4F4680082ED50 /* Interest.swift */; };
 		90E8863E24B7940A0082ED50 /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8863D24B7940A0082ED50 /* RoutineViewController.swift */; };
 		90E8864024B798290082ED50 /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E8863F24B798290082ED50 /* RoutineTableViewCell.swift */; };
 		A8DBEDC53AD52A9759BDFDB4 /* AssetsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F565C6B88B0FF05143ED30 /* AssetsUtils.swift */; };
-		D8796AA469A8E0A7875D06D3 /* Pods_ProgressiveOverload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FF5DBE6D567FF4C8A5ADC1 /* Pods_ProgressiveOverload.framework */; };
+		DC3747B3BCBCDF236256482C /* Pods_ProgressiveOverload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14372B815D8EB55EF07616C1 /* Pods_ProgressiveOverload.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F55DBFDABAC894296FA954C /* Pods-ProgressiveOverload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressiveOverload.release.xcconfig"; path = "Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload.release.xcconfig"; sourceTree = "<group>"; };
-		46FF5DBE6D567FF4C8A5ADC1 /* Pods_ProgressiveOverload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressiveOverload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14372B815D8EB55EF07616C1 /* Pods_ProgressiveOverload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressiveOverload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9049B27724C8A00C001875BF /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = SOURCE_ROOT; };
 		9049B27A24C8A999001875BF /* ProgressiveOverload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgressiveOverload.xcdatamodel; sourceTree = "<group>"; };
 		9049B27C24C8E846001875BF /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -50,26 +42,20 @@
 		90AE781324B3ACBC0003898B /* WorkouitsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkouitsCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		90AE781724B3B6E10003898B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		90AE9EA024C0C87D00E50761 /* RoutineTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell2.swift; sourceTree = "<group>"; };
-		90DB2161249968D500B5A061 /* ProgressiveOverload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressiveOverload.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90DB2161249968D500B5A061 /* FitAssist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitAssist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DB2164249968D500B5A061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90DB2166249968D500B5A061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		90DB2168249968D500B5A061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		90DB216B249968D500B5A061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90DB216D249968D700B5A061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90DB2170249968D700B5A061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90DB2172249968D700B5A061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90DB217824996F4600B5A061 /* calculationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculationModel.swift; sourceTree = "<group>"; };
-		90DB217C2499875100B5A061 /* valuesTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = valuesTextField.swift; sourceTree = "<group>"; };
-		90DB217E249BCC8500B5A061 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = SOURCE_ROOT; };
-		90DB218024A10BCF00B5A061 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = SOURCE_ROOT; };
-		90DB218224A11EC800B5A061 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		90DB218424A133FF00B5A061 /* LiftingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftingViewController.swift; sourceTree = "<group>"; };
 		90DE989D24E584EA007D24E7 /* RoutineNavigationControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNavigationControllerViewController.swift; sourceTree = SOURCE_ROOT; };
 		90E8863924B4F4680082ED50 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		90E8863D24B7940A0082ED50 /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = SOURCE_ROOT; };
 		90E8863F24B798290082ED50 /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
-		A6BB7CC5EAF185BC0BDE3E96 /* Pods-ProgressiveOverload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressiveOverload.debug.xcconfig"; path = "Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload.debug.xcconfig"; sourceTree = "<group>"; };
 		A9F565C6B88B0FF05143ED30 /* AssetsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsUtils.swift; sourceTree = "<group>"; };
+		F4E5DE52CF2A6C970DAA1EE8 /* Pods-ProgressiveOverload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressiveOverload.release.xcconfig"; path = "Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload.release.xcconfig"; sourceTree = "<group>"; };
+		FEA0E760CA68C23616DD84CC /* Pods-ProgressiveOverload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressiveOverload.debug.xcconfig"; path = "Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,21 +63,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8796AA469A8E0A7875D06D3 /* Pods_ProgressiveOverload.framework in Frameworks */,
+				DC3747B3BCBCDF236256482C /* Pods_ProgressiveOverload.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A381E703863CCA71EA9D167 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				46FF5DBE6D567FF4C8A5ADC1 /* Pods_ProgressiveOverload.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		29C6CCA353FB73561FEF9503 /* HappyCodingSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,20 +78,29 @@
 			path = HappyCodingSupport;
 			sourceTree = "<group>";
 		};
+		4B0E835DCF86F7982E35A984 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FEA0E760CA68C23616DD84CC /* Pods-ProgressiveOverload.debug.xcconfig */,
+				F4E5DE52CF2A6C970DAA1EE8 /* Pods-ProgressiveOverload.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		90DB2158249968D500B5A061 = {
 			isa = PBXGroup;
 			children = (
 				90DB2163249968D500B5A061 /* ProgressiveOverload */,
 				90DB2162249968D500B5A061 /* Products */,
-				A28264D83C5BBA616DF6F82B /* Pods */,
-				1A381E703863CCA71EA9D167 /* Frameworks */,
+				DE67D77D6690E65BADF9C557 /* Frameworks */,
+				4B0E835DCF86F7982E35A984 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		90DB2162249968D500B5A061 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90DB2161249968D500B5A061 /* ProgressiveOverload.app */,
+				90DB2161249968D500B5A061 /* FitAssist.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,15 +119,8 @@
 				90AE781324B3ACBC0003898B /* WorkouitsCollectionViewCell.swift */,
 				90AE781724B3B6E10003898B /* CustomButton.swift */,
 				90AE780F24B0D0290003898B /* WorkoutMenueViewController.swift */,
-				90DB218024A10BCF00B5A061 /* WorkoutViewController.swift */,
-				90DB218224A11EC800B5A061 /* InfoViewController.swift */,
-				90DB218424A133FF00B5A061 /* LiftingViewController.swift */,
-				90DB217E249BCC8500B5A061 /* StatisticsView.swift */,
 				90DB2164249968D500B5A061 /* AppDelegate.swift */,
 				90DB2166249968D500B5A061 /* SceneDelegate.swift */,
-				90DB2168249968D500B5A061 /* ViewController.swift */,
-				90DB217C2499875100B5A061 /* valuesTextField.swift */,
-				90DB217824996F4600B5A061 /* calculationModel.swift */,
 				90DB216A249968D500B5A061 /* Main.storyboard */,
 				90DB216D249968D700B5A061 /* Assets.xcassets */,
 				90E8863924B4F4680082ED50 /* Interest.swift */,
@@ -153,13 +133,12 @@
 			path = ProgressiveOverload;
 			sourceTree = "<group>";
 		};
-		A28264D83C5BBA616DF6F82B /* Pods */ = {
+		DE67D77D6690E65BADF9C557 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A6BB7CC5EAF185BC0BDE3E96 /* Pods-ProgressiveOverload.debug.xcconfig */,
-				1F55DBFDABAC894296FA954C /* Pods-ProgressiveOverload.release.xcconfig */,
+				14372B815D8EB55EF07616C1 /* Pods_ProgressiveOverload.framework */,
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +148,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90DB2175249968D700B5A061 /* Build configuration list for PBXNativeTarget "ProgressiveOverload" */;
 			buildPhases = (
-				F655AEBC8A9F9DCB4121FE2B /* [CP] Check Pods Manifest.lock */,
+				AC835C795836D2FD22B9CB82 /* [CP] Check Pods Manifest.lock */,
 				90DB215D249968D500B5A061 /* Sources */,
 				90DB215E249968D500B5A061 /* Frameworks */,
 				90DB215F249968D500B5A061 /* Resources */,
-				AA13A9331805F5927AED826E /* [CP] Embed Pods Frameworks */,
+				A911E3F42EBA0D795BA4E9F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,7 +160,7 @@
 			);
 			name = ProgressiveOverload;
 			productName = ProgressiveOverload;
-			productReference = 90DB2161249968D500B5A061 /* ProgressiveOverload.app */;
+			productReference = 90DB2161249968D500B5A061 /* FitAssist.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,7 +210,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AA13A9331805F5927AED826E /* [CP] Embed Pods Frameworks */ = {
+		A911E3F42EBA0D795BA4E9F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,20 +218,16 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ProgressiveOverload/Pods-ProgressiveOverload-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F655AEBC8A9F9DCB4121FE2B /* [CP] Check Pods Manifest.lock */ = {
+		AC835C795836D2FD22B9CB82 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,23 +258,16 @@
 			files = (
 				90AE781824B3B6E10003898B /* CustomButton.swift in Sources */,
 				90AE9EA124C0C87D00E50761 /* RoutineTableViewCell2.swift in Sources */,
-				90DB2169249968D500B5A061 /* ViewController.swift in Sources */,
 				90AE781424B3ACBC0003898B /* WorkouitsCollectionViewCell.swift in Sources */,
 				90DE989E24E584EA007D24E7 /* RoutineNavigationControllerViewController.swift in Sources */,
-				90DB217F249BCC8500B5A061 /* StatisticsView.swift in Sources */,
 				90E8863A24B4F4680082ED50 /* Interest.swift in Sources */,
 				90AE781024B0D0290003898B /* WorkoutMenueViewController.swift in Sources */,
-				90DB218124A10BCF00B5A061 /* WorkoutViewController.swift in Sources */,
 				9049B27F24D08B31001875BF /* RoutineModel.swift in Sources */,
 				9049B27824C8A00C001875BF /* ExerciseModel.swift in Sources */,
 				9049B27D24C8E846001875BF /* Exercise.swift in Sources */,
-				90DB217924996F4600B5A061 /* calculationModel.swift in Sources */,
-				90DB217D2499875100B5A061 /* valuesTextField.swift in Sources */,
 				90E8863E24B7940A0082ED50 /* RoutineViewController.swift in Sources */,
 				9049B27B24C8A999001875BF /* ProgressiveOverload.xcdatamodeld in Sources */,
 				90DB2165249968D500B5A061 /* AppDelegate.swift in Sources */,
-				90DB218524A133FF00B5A061 /* LiftingViewController.swift in Sources */,
-				90DB218324A11EC800B5A061 /* InfoViewController.swift in Sources */,
 				9049B28324D9BDC0001875BF /* Routine.swift in Sources */,
 				90E8864024B798290082ED50 /* RoutineTableViewCell.swift in Sources */,
 				90DB2167249968D500B5A061 /* SceneDelegate.swift in Sources */,
@@ -446,7 +414,7 @@
 		};
 		90DB2176249968D700B5A061 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6BB7CC5EAF185BC0BDE3E96 /* Pods-ProgressiveOverload.debug.xcconfig */;
+			baseConfigurationReference = FEA0E760CA68C23616DD84CC /* Pods-ProgressiveOverload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -457,15 +425,15 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vik3.ProgressiveOverload;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FitAssist;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		90DB2177249968D700B5A061 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F55DBFDABAC894296FA954C /* Pods-ProgressiveOverload.release.xcconfig */;
+			baseConfigurationReference = F4E5DE52CF2A6C970DAA1EE8 /* Pods-ProgressiveOverload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -476,9 +444,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vik3.ProgressiveOverload;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FitAssist;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

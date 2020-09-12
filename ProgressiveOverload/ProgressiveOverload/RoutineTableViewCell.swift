@@ -76,7 +76,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         timerButton.setImage(nil, for: [])
         timerButton.setTitle(toDisplay(currVal: timerDisplayed, chosenTime: profileChosenTimer), for: [])
         timerButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: [])
-      // print(timerDisplayed)
+     
         if(timerDisplayed == profileChosenTimer)
         {
             timerRunning = false
@@ -284,7 +284,7 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         guard editingStyle == .delete else {return}
-        print(label.text!)
+      
         routineModel.findPrevious(exercise: label.text!, prevNum: 1)
        var listOfObjects =  routineModel.getCurrentLiftsObjects()
       
@@ -321,6 +321,8 @@ class RoutineTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewD
         
     }
     */
+    
+    
     
     
 }

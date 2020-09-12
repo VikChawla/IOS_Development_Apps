@@ -6,9 +6,6 @@ target 'ProgressiveOverload' do
   use_frameworks!
 
   # Pods for ProgressiveOverload
-
-pod 'SideMenu'
-pod 'Charts'
-pod 'RealmSwift'
+  pod 'RealmSwift'
 
 end

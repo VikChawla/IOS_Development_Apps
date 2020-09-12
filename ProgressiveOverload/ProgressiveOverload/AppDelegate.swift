@@ -9,7 +9,8 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate
+{
 
     var window: UIWindow?
     
@@ -17,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let navigationFont = UIFont(name: "Avenir Black", size: 40)
         let navigationFontAttributes = [NSAttributedString.Key.font : navigationFont]
-        UINavigationBar.appearance().titleTextAttributes = navigationFontAttributes
+        UINavigationBar.appearance().titleTextAttributes = navigationFontAttributes as [NSAttributedString.Key : Any]
        // UIBarButtonItem.appearance().setTitleTextAttributes(navigationFontAttributes, for: .normal)
-        UINavigationBar.appearance().largeTitleTextAttributes = navigationFontAttributes
+        UINavigationBar.appearance().largeTitleTextAttributes = navigationFontAttributes as [NSAttributedString.Key : Any]
        // navigationController.navigationBar.shadowImage = UIImage()
         return true
     }
