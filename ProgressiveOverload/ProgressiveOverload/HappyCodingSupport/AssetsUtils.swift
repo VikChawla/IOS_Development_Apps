@@ -10,9 +10,7 @@
 
 extension Image {
     static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
+   // static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
     static var assetsBeginner: Image { return Image(named: ImageName("beginner"))! }
     static var assetsBlue: Image { return Image(named: ImageName("blue"))! }
     static var assetsBlue2: Image { return Image(named: ImageName("blue2"))! }
@@ -39,8 +37,10 @@ extension Image {
     static var assetsIonIosAdd: Image { return Image(named: ImageName("Ion_ios_add"))! }
     static var assetsIonIosTimer: Image { return Image(named: ImageName("Ion_ios_timer"))! }
     static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
-  //  static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
- //   static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
+    static var assetsSfArrowshapeTurnUpLeftCircleFill: Image { return Image(named: ImageName("SF_arrowshape_turn_up_left_circle_fill"))! }
+    static var assetsSfArrowshapeTurnUpLeftFill: Image { return Image(named: ImageName("SF_arrowshape_turn_up_left_fill"))! }
+    static var assetsSfArrowshapeTurnUpRightCircleFill: Image { return Image(named: ImageName("SF_arrowshape_turn_up_right_circle_fill"))! }
+    static var assetsSfArrowshapeTurnUpRightFill: Image { return Image(named: ImageName("SF_arrowshape_turn_up_right_fill"))! }
     static var assetsSfPencilTipCropCircleBadgePlus: Image { return Image(named: ImageName("SF_pencil_tip_crop_circle_badge_plus"))! }
     static var assetsSfPlusSquareOnSquareFill: Image { return Image(named: ImageName("SF_plus_square_on_square_fill"))! }
     static var assetsSfPlusSquareOnSquareFill1: Image { return Image(named: ImageName("SF_plus_square_on_square_fill-1"))! }
@@ -52,10 +52,6 @@ extension Image {
     static var assetsTrashdelete1: Image { return Image(named: ImageName("trashDelete-1"))! }
     static var assetsTrashdelete2: Image { return Image(named: ImageName("trashDelete-2"))! }
     static var assetsWorkoutstuff: Image { return Image(named: ImageName("workoutStuff"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
-  //  static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
-  //  static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
+   // static var assetsAppicon: Image { return Image(named: ImageName("AppIcon"))! }
+   // static var assetsItunesartwork: Image { return Image(named: ImageName("iTunesArtwork"))! }
 }

@@ -13,6 +13,9 @@ class RoutineModel
     var realm = try! Realm()
     var currLifts = [String]()
     var currLiftsObjects = [ExerciseModel]()
+    var atEndPrev = false
+    var atEndNext = true
+    var prevDate = ""
     
     func findPrevious(exercise: String, prevNum: Int ) -> [String]?
        {
@@ -128,6 +131,7 @@ class RoutineModel
     
     func findCurrent(exercise: String) -> [String]
     {
+        var currLiftsNow = [String]()
         let formatterDate = DateFormatter()
         formatterDate.timeZone = .current
         formatterDate.locale = .current
@@ -143,7 +147,6 @@ class RoutineModel
         let todaysDate = Date()
         let todaysDate2 = removeTimeStamp(fromDate: todaysDate)
         let todaysDateString = formatterDate.string(from: todaysDate2)
-        print(todaysDateString)
         results = results.filter("date CONTAINS '\(todaysDateString)'")
         var resultsArr = Array(results)
         resultsArr = resultsArr.sorted(by:
@@ -152,34 +155,107 @@ class RoutineModel
         
         })
         for i in 0..<resultsArr.count{
-            currLifts.append(resultsArr[i].setsByReps!)
+            currLiftsNow.append(resultsArr[i].setsByReps!)
         }
-        
-        return currLifts.reversed()
+    
+        return currLiftsNow.reversed()
     }
     
     
-    func findPreviousButton(exercise: String, prevNum: Int )
+    
+    //makes an array list of the difference unique dates in order. throws prevNum into the list and what it spits back is what it gets.
+    func findPreviousButton(exercise: String, prevNum: Int ) -> [String]
     {
+        atEndNext = false
+        atEndPrev = false
+        var dayNumber = prevNum
+        
+        var previousVals = [String]()
         let formatter = DateFormatter()
         formatter.timeZone = .current
         formatter.locale = .current
-                          //formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"//"y-MM-dd H:m:ss.SSSS"//"MM/dd/yy
-               
         formatter.dateStyle = .full
         formatter.timeStyle = .full
         
-        let results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
+        let formatterDate = DateFormatter()
+        formatterDate.timeZone = .current
+        formatterDate.locale = .current
+        formatterDate.dateStyle = .full
+      
+        var results =   realm.objects(ExerciseModel.self).filter("exercise = '\(exercise)'")
         
-       // if(results.count <= 0 ) //{return [""]}
-        var counter = 0;
-        
-        
-       
-        while(counter != prevNum)
+        if(results.count < 1)
         {
+            atEndPrev = true
+            atEndNext = true
+            print("both true")
+            return previousVals
             
         }
+    
+        
+        var resultsArr = Array(results)
+        
+        resultsArr = resultsArr.sorted(by:
+        {
+            return  formatter.date(from: $0.date ?? "")?.compare(formatter.date(from: $1.date ?? "")!) == .orderedDescending
+        })
+        var uniqueDates = [String]()
+        for i in 0..<resultsArr.count
+        {
+  
+            let date = formatter.date(from: resultsArr[i].date!)
+            let date2 = removeTimeStamp(fromDate: date!)
+            let date3 = formatterDate.string(from: date2)
+            uniqueDates.append(date3)
+        }
+        uniqueDates = uniqueDates.unique()
+        
+      
+        // if(dayNumber > uniqueDates.count - 2 )
+        
+        if(dayNumber > uniqueDates.count - 1)
+        {
+            atEndPrev = true
+            return [""]
+        }
+        
+        
+        
+        
+        else if(dayNumber > uniqueDates.count - 2)
+        {
+            print(dayNumber)
+            print("day")
+            atEndPrev = true
+            prevDate = uniqueDates[dayNumber]
+            
+            //atEndPrev = true
+           // return [""]
+            
+        }
+      
+        
+        resultsArr = resultsArr.sorted(by:
+        {
+            return  formatter.date(from: $0.date ?? "")?.compare(formatter.date(from: $1.date ?? "")!) == .orderedDescending
+            
+        })
+        //print(resultsArr)
+       
+        
+        results = results.filter("date CONTAINS '\(uniqueDates[dayNumber])'")
+        resultsArr = Array(results)
+        
+         for i in 0..<resultsArr.count
+         {
+            previousVals.append(resultsArr[i].setsByReps!)
+            currLiftsObjects.append(resultsArr[i])
+         }
+        
+        prevDate = uniqueDates[dayNumber]
+        
+        return previousVals
         
         
     }
@@ -206,9 +282,26 @@ class RoutineModel
         }
         
     }
+    
     func getCurrentLiftsObjects() -> [ExerciseModel]
     {
       return  currLiftsObjects.reversed()
+    }
+    
+    func getPrevDate() -> String
+    {
+        if(prevDate == ""){return "Previous"}
+        let formatterDate = DateFormatter()
+        formatterDate.timeZone = .current
+        formatterDate.locale = .current
+        formatterDate.dateStyle = .full
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = " MMM dd "
+        let date = formatterDate.date(from: prevDate)!
+        let date2 = removeTimeAndYearStamp(fromDate: date)
+        let date3 = formatter.string(from: date2)
+        return date3
     }
     
     public func removeTimeStamp(fromDate: Date) -> Date {
@@ -218,6 +311,13 @@ class RoutineModel
            return date
        }
     
+    public func removeTimeAndYearStamp(fromDate: Date) -> Date {
+             guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.month, .day], from: fromDate)) else {
+                 fatalError("Failed to strip time from Date object")
+             }
+             return date
+         }
+    
     func remove(obj: ExerciseModel)
     {
         try! realm.write {
@@ -226,3 +326,11 @@ class RoutineModel
         }
     }
 }
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: [Iterator.Element: Bool] = [:]
+        return self.filter { seen.updateValue(true, forKey: $0) == nil }
+    }
+}
+

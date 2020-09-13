@@ -168,8 +168,32 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.tableView.cellForRow(at: indexPath)
         cell.label.text = nameArr[indexPath.row]
         cell.profileChosenTimer = selectedTime
+        cell.setsByReps = cell.routineModel.findCurrent(exercise: nameArr[indexPath.row])
+        if(cell.setsByReps.count > 0){
+            cell.prevCounter = 1
+        }
+        else{
+            cell.prevCounter = 0
+        }
+        cell.prevLifts = cell.routineModel.findPreviousButton(exercise: nameArr[indexPath.row], prevNum: cell.prevCounter)
         
-      
+        if(cell.prevLifts.count >= 1)
+        {
+            cell.previousLabel.text = cell.routineModel.getPrevDate()
+        }
+        else
+        {
+            cell.previousLabel.text = "Previous"
+        }
+        
+        if(cell.routineModel.atEndPrev)
+        {
+            print("its hitting endasdasd")
+            cell.extraPrevButton.setImage(UIImage(named: "SF_arrowshape_turn_up_left_circle_fill"), for: .normal)
+        }
+        else{
+             cell.extraPrevButton.setImage(UIImage(named: "SF_arrowshape_turn_up_left_fill"), for: .normal)
+        }
         
         
         return cell
@@ -200,10 +224,11 @@ class RoutineViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
       tableView.reloadRows(at: [indexPath], with: .automatic)
-        let cell = tableView.cellForRow(at: indexPath) as! RoutineTableViewCell
+      //  let cell = tableView.cellForRow(at: indexPath) as! RoutineTableViewCell
             
-        cell.prevLifts = cell.routineModel.findPrevious(exercise: nameArr[indexPath.row], prevNum: 1)!
-        cell.setsByReps = cell.routineModel.getCurrentLifts()
+      //  cell.prevLifts = cell.routineModel.findPreviousButton(exercise: nameArr[indexPath.row], prevNum: 1)
+      //  cell.setsByReps = cell.routineModel.findCurrent(exercise: nameArr[indexPath.row])
+       
       
        
        
